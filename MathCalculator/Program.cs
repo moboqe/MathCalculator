@@ -19,6 +19,8 @@ namespace MathCalculator
                 return 1;
             if (op == "*" || op == "/")
                 return 2;
+            if (op == "^")
+                return 3;
             return 0;
         }
         static string[] unaryMinus(string[] result)
@@ -90,6 +92,17 @@ namespace MathCalculator
                         o.Pop();
                         break;
                     }
+                case "^":
+                    {
+                        b = n.Pop().Value;
+                        c = Math.Pow(b, a);
+                        Console.WriteLine("Результат деления= {0}", c);
+                        item.Type = "0";
+                        item.Value = c;
+                        n.Push(item);
+                        o.Pop();
+                        break;
+                    }
             }
 
         }
@@ -144,7 +157,7 @@ namespace MathCalculator
                     numbers.Push(item);
                     continue;
                 }
-                if (result[i] == "+" || result[i] == "-" || result[i] == "*"  || result[i] == "/")
+                if (result[i] == "+" || result[i] == "-" || result[i] == "*"  || result[i] == "/" || result[i] == "^")
                 {
                     if (opers.Count == 0)
                     {
